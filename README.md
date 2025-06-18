@@ -37,7 +37,7 @@ Add the service provider and middleware alias to your `config/twill.php` if not 
 Laravel 11 no longer uses the `Http\Kernel` class for middleware
 registration. Instead, middleware is configured in `bootstrap/app.php`.
 Because redirect rules may apply to URLs that don't match any defined
-route, the middleware should run before route resolution. Register it in
+route, the middleware should run before route resolution. Prepend it to
 the global middleware stack within the `withMiddleware` closure:
 
 ```php
@@ -45,9 +45,7 @@ use TwillRedirects\Http\Middleware\RedirectMiddleware;
 use Illuminate\Foundation\Configuration\Middleware;
 
 ->withMiddleware(function (Middleware $middleware) {
-    $middleware->global(prepend: [
-        RedirectMiddleware::class,
-    ]);
+    $middleware->prepend(RedirectMiddleware::class);
 })
 ```
 
