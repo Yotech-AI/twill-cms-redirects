@@ -16,7 +16,7 @@ class RedirectRequest extends Request
         return $this->rules();
     }
 
-    protected function rules(): array
+    public function rules(): array
     {
         return [
             'title' => 'required|string|max:255',
