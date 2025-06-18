@@ -20,9 +20,5 @@ class TwillRedirectsServiceProvider extends TwillPackageServiceProvider
                 $migrationPath => database_path('migrations'),
             ], 'twill-cms-redirects-migrations');
         }
-
-        TwillNavigation::addLink(
-            NavigationLink::make()->forSingleton('redirect')
-        );
     }
 }
