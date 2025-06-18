@@ -49,21 +49,6 @@ use Illuminate\Foundation\Configuration\Middleware;
 })
 ```
 
-### Navigation
-
-Add a link to the admin navigation so editors can access the singleton:
-
-```php
-use A17\Twill\Facades\TwillNavigation;
-use A17\Twill\View\Components\Navigation\NavigationLink;
-
-TwillNavigation::addLink(
-    NavigationLink::make()->forSingleton('redirect')
-);
-```
-
-If you are using the [twill-navigation](https://github.com/area17/twill-navigation) package, register the capsule in `config/twill-navigation.php`.
-
 ## Seeder
 
 A `RedirectSeeder` is included and will create the initial singleton record if none exists. Twill automatically runs this seeder when you visit the capsule for the first time.
