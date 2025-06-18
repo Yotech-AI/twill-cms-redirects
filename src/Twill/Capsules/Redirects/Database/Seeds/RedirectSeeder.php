@@ -1,6 +1,6 @@
 <?php
 
-namespace TwillRedirects\Twill\Capsules\Redirects\database\seeders;
+namespace TwillRedirects\Twill\Capsules\Redirects\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use TwillRedirects\Twill\Capsules\Redirects\Models\Redirect;
