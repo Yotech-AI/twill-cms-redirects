@@ -11,9 +11,14 @@ use A17\Twill\Models\Contracts\TwillModelContract;
 
 class RedirectController extends BaseModuleController
 {
-    protected string $moduleName = 'redirects';
+    /**
+     * Override the module name without a typed property to maintain
+     * compatibility with the parent controller which defines this
+     * property without a type declaration.
+     */
+    protected $moduleName = 'redirects';
 
-    protected function getForm(TwillModelContract $model): Form
+    public function getForm(TwillModelContract $model): Form
     {
         $form = parent::getForm($model);
 
