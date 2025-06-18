@@ -3,6 +3,8 @@
 namespace TwillRedirects;
 
 use A17\Twill\TwillPackageServiceProvider;
+use A17\Twill\Facades\TwillNavigation;
+use A17\Twill\View\Components\Navigation\NavigationLink;
 use Illuminate\Support\Facades\Route;
 use TwillRedirects\Http\Middleware\RedirectMiddleware;
 
@@ -10,7 +12,8 @@ class TwillRedirectsServiceProvider extends TwillPackageServiceProvider
 {
     public function boot(): void
     {
-        $this->registerCapsules('Capsules');
+        parent::boot();
+
         $migrationPath = __DIR__ . '/Twill/Capsules/Redirects/database/migrations';
         $this->loadMigrationsFrom($migrationPath);
 
@@ -21,5 +24,9 @@ class TwillRedirectsServiceProvider extends TwillPackageServiceProvider
         }
 
         Route::aliasMiddleware('twill.redirects', RedirectMiddleware::class);
+
+        TwillNavigation::addLink(
+            NavigationLink::make()->forSingleton('redirect')
+        );
     }
 }
