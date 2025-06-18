@@ -1,8 +1,9 @@
 {
-  "name": "yotech/twill-redirects",
+  "name": "yotech-ai/twill-cms-redirects",
   "description": "A Twill CMS package",
   "homepage": "https://github.com/Yotech-AI/twill-cms-redirects",
   "license": "MIT",
+  "version": "0.5",
   "require": {
     "area17/twill": "^3.4"
   },

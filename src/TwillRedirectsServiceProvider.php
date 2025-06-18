@@ -11,7 +11,14 @@ class TwillRedirectsServiceProvider extends TwillPackageServiceProvider
     public function boot(): void
     {
         $this->registerCapsules('Capsules');
-        $this->loadMigrationsFrom(__DIR__ . '/Twill/Capsules/Redirects/database/migrations');
+        $migrationPath = __DIR__ . '/Twill/Capsules/Redirects/database/migrations';
+        $this->loadMigrationsFrom($migrationPath);
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $migrationPath => database_path('migrations'),
+            ], 'twill-cms-redirects-migrations');
+        }
 
         Route::aliasMiddleware('twill.redirects', RedirectMiddleware::class);
     }
