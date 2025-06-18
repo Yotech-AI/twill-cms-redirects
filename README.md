@@ -36,20 +36,17 @@ Add the service provider and middleware alias to your `config/twill.php` if not 
 
 Laravel 11 no longer uses the `Http\Kernel` class for middleware
 registration. Instead, middleware is configured in `bootstrap/app.php`.
-Define the alias and append it to the `web` middleware group within the
-`withMiddleware` closure:
+Because redirect rules may apply to URLs that don't match any defined
+route, the middleware should run before route resolution. Register it in
+the global middleware stack within the `withMiddleware` closure:
 
 ```php
 use TwillRedirects\Http\Middleware\RedirectMiddleware;
 use Illuminate\Foundation\Configuration\Middleware;
 
 ->withMiddleware(function (Middleware $middleware) {
-    $middleware->alias([
-        'twill.redirects' => RedirectMiddleware::class,
-    ]);
-
-    $middleware->web(append: [
-        'twill.redirects',
+    $middleware->global(prepend: [
+        RedirectMiddleware::class,
     ]);
 })
 ```
