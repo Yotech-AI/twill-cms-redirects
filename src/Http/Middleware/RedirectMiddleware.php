@@ -10,6 +10,11 @@ use TwillRedirects\Twill\Capsules\Redirects\Models\Redirect;
 
 class RedirectMiddleware
 {
+    /**
+     * Check the requested URL against the configured redirect rules and
+     * perform a redirect when a match is found. If no rule matches the
+     * request, control is passed to the next middleware/route handler.
+     */
     public function handle(Request $request, Closure $next)
     {
         $redirects = Cache::rememberForever('twill_redirects', function () {
