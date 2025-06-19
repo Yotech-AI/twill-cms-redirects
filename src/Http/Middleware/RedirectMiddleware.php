@@ -42,7 +42,13 @@ class RedirectMiddleware
         $pattern = '/' . ltrim($pattern, '/');
 
         if (str_ends_with($pattern, '*')) {
-            return str_starts_with($path, rtrim($pattern, '*'));
+            $base = rtrim($pattern, '*');
+
+            if (rtrim($path, '/') === rtrim($base, '/')) {
+                return true;
+            }
+
+            return str_starts_with($path, $base);
         }
 
         return rtrim($path, '/') === rtrim($pattern, '/');
